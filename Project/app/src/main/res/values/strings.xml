@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">Project</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="txtWelcome">Welcome to Pet Shop</string>
+    <string name="txtIntro">Caring for your pets has never been so easy!
+        \nWith Pet Shop, you can get pet supplies, hire
+        \nprofessional pet services and book Vet
+        \nappointments.</string>
+    <string name="btnSignIn">Sign in</string>
+    <string name="btnSignUp">Create an account</string>
+    <string name="txtSignUp">Create your free \naccount</string>
+    <string name="txtSignUpQuestion">Already have an account?</string>
+    <string name="txtSignIn">Sign in!</string>
+    <string name="txtName">Name</string>
+    <string name="txtEmail">Email</string>
+    <string name="edName">Remiola</string>
+    <string name="edEmail">e.g Remiola2034@gmail.com</string>
+    <string name="txtPass">Password</string>
+    <string name="btnShowHide">Hide</string>
+    <string name="txtSth">Your password must have 6 or more characters, a capital letter and must contain at least one number.</string>
+    <string name="txtPhone">Phone number</string>
+    <string name="edPhone">e.g +84 34 231 3344</string>
+    <string name="txtSthPhone">Your number should contain your country code and state code.</string>
+    <string name="txtSignInSignIn">Sign in to your \naccount</string>
+    <string name="txtSignInSmall">Do you have an account?</string>
+    <string name="txtSignUpSignIn">Create it!</string>
+    <string name="txtEmailSignIn">Email</string>
+    <string name="edEmailSignIn">e.g Remiola2034@gmail.com</string>
+    <string name="txtPassSignIn">Password</string>
+    <string name="btnShowHideSignIn">Hide</string>
+    <string name="txtRemember">Remember me.</string>
+    <string name="btnSignInSignIn">Sign in</string>
+    <string name="txtForgot">Forgot password?</string>
+    <string name="txtForgotPass">Forgot password?</string>
+    <string name="txtMgsForgot">Enter the email address associated with your \naccount.</string>
+    <string name="edEmailForgot">e.g Remiolo2034@gmail.com</string>
+    <string name="txtMgsSth">We will send a link to reset your password to that email.</string>
+    <string name="btnReset">Reset password</string>
+    <string name="txtReset">Reset link sent!</string>
+    <string name="txtResetMgs" />
+    <string name="btnReturnSignIn">Proceed to login</string>
+    <string name="txtAccept">By continuing, you agree to our Terms of Service.</string>
+    <string name="btnNext">Next step</string>
+    <string name="txtSignInSignUp">Sign in!</string>
+    <string name="txtSetting">Settings</string>
+    <string name="btnEdit">Edit Profile</string>
+</resources>
