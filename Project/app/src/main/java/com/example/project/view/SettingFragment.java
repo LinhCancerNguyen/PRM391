@@ -36,8 +36,8 @@ public class SettingFragment extends Fragment {
     private String mParam2;
 
     private ListView listMenu;
-    private String menu[] = {"Sevurity", "Cards", "Address", "Invite a friend", "Help", "FAQs", "Sign out"};
-    int img[] = {R.drawable.ic_security, R.drawable.ic_card, R.drawable.ic_location, R.drawable.ic_giftcard, R.drawable.ic_help, R.drawable.ic_faq, R.drawable.ic_signout};
+    private String menu[] = {"Security", "Cards", "Address", "Invite a friend", "Help", "FAQs", "Sign out"};
+    int img[] = {R.drawable.ic_security_2, R.drawable.ic_card, R.drawable.ic_location, R.drawable.ic_giftcard, R.drawable.ic_help, R.drawable.ic_faq, R.drawable.ic_signout};
     private Context mContext;
 
     @Override

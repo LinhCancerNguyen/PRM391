@@ -4,11 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".view.SignUpActitity">
 
     <TextView
         android:id="@+id/txtSignUp"
-        android:layout_width="380dp"
+        android:layout_width="360dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:text="@string/txtSignUp"
@@ -25,6 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:text="@string/txtSignUpQuestion"
+        android:textColor="#80000000"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/txtSignUp"
         app:layout_constraintTop_toBottomOf="@+id/txtSignUp" />
@@ -46,6 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:text="@string/txtName"
+        android:textColor="#80000000"
         app:layout_constraintStart_toStartOf="@+id/txtSignUpQuestion"
         app:layout_constraintTop_toBottomOf="@+id/txtSignUpQuestion" />
 
@@ -55,6 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="@string/txtPass"
+        android:textColor="#80000000"
         app:layout_constraintStart_toStartOf="@+id/edEmail"
         app:layout_constraintTop_toBottomOf="@+id/edEmail" />
 
@@ -64,43 +68,48 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="@string/txtEmail"
+        android:textColor="#80000000"
         app:layout_constraintStart_toStartOf="@+id/txtName"
         app:layout_constraintTop_toBottomOf="@+id/edName" />
 
     <EditText
         android:id="@+id/edName"
         android:layout_width="360dp"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_marginTop="5dp"
         android:background="@drawable/custom_input"
         android:drawablePadding="12dp"
-        android:paddingStart="12dp"
-        android:paddingEnd="12dp"
         android:ems="10"
         android:hint="@string/edName"
         android:inputType="textPersonName"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:textColor="#000000"
+        android:textColorHint="#80000000"
         app:layout_constraintStart_toStartOf="@+id/txtName"
         app:layout_constraintTop_toBottomOf="@+id/txtName" />
 
     <EditText
         android:id="@+id/edEmail"
         android:layout_width="360dp"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_marginTop="5dp"
         android:background="@drawable/custom_input"
         android:drawablePadding="12dp"
-        android:paddingStart="12dp"
-        android:paddingEnd="12dp"
         android:ems="10"
         android:hint="@string/edEmail"
         android:inputType="textEmailAddress"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:textColor="#000000"
+        android:textColorHint="#80000000"
         app:layout_constraintStart_toStartOf="@+id/txtEmail"
         app:layout_constraintTop_toBottomOf="@+id/txtEmail" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="360dp"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_marginTop="5dp"
         app:layout_constraintStart_toStartOf="@+id/txtPass"
         app:layout_constraintTop_toBottomOf="@+id/txtPass">
@@ -108,18 +117,20 @@
         <EditText
             android:id="@+id/edPass"
             android:layout_width="360dp"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:background="@drawable/custom_input"
             android:drawablePadding="12dp"
+            android:ems="10"
+            android:inputType="textPassword"
             android:paddingStart="12dp"
             android:paddingEnd="12dp"
-            android:ems="10"
-            android:inputType="textPassword" />
+            android:textColor="#000000"
+            android:textColorHint="#80000000" />
 
         <Button
             android:id="@+id/btnShowHide"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:layout_alignParentRight="true"
             android:alpha="1"
             android:background="@drawable/custom_button_2"
@@ -145,21 +156,24 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="@string/txtPhone"
+        android:textColor="#80000000"
         app:layout_constraintStart_toStartOf="@+id/txtSth"
         app:layout_constraintTop_toBottomOf="@+id/txtSth" />
 
     <EditText
         android:id="@+id/edPhone"
         android:layout_width="360dp"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_marginTop="5dp"
         android:background="@drawable/custom_input"
         android:drawablePadding="12dp"
-        android:paddingStart="12dp"
-        android:paddingEnd="12dp"
         android:ems="10"
         android:hint="@string/edPhone"
         android:inputType="phone"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:textColor="#000000"
+        android:textColorHint="#80000000"
         app:layout_constraintStart_toStartOf="@+id/txtPhone"
         app:layout_constraintTop_toBottomOf="@+id/txtPhone" />
 
@@ -168,9 +182,9 @@
         android:layout_width="360dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
+        android:text="@string/txtSthPhone"
         android:textColor="#5049C0"
         android:textStyle="bold"
-        android:text="@string/txtSthPhone"
         app:layout_constraintStart_toStartOf="@+id/edPhone"
         app:layout_constraintTop_toBottomOf="@+id/edPhone" />
 
@@ -181,7 +195,7 @@
         android:layout_marginTop="15dp"
         app:layout_constraintStart_toStartOf="@+id/txtSthPhone"
         app:layout_constraintTop_toBottomOf="@+id/txtSthPhone"
-        app:srcCompat="@drawable/ic_baseline_security_24" />
+        app:srcCompat="@drawable/ic_security_1" />
 
     <TextView
         android:id="@+id/txtAccept"
@@ -189,20 +203,21 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:text="@string/txtAccept"
+        android:textColor="#80000000"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
         app:layout_constraintTop_toTopOf="@+id/imageView2" />
 
     <Button
         android:id="@+id/btnNext"
         android:layout_width="360dp"
-        android:layout_height="60dp"
+        android:layout_height="40dp"
         android:layout_marginTop="25dp"
-        android:background="#5049C0"
-        android:textColor="#FFFFFF"
+        android:background="@drawable/custom_button_1"
         android:text="@string/btnNext"
         android:textAllCaps="false"
+        android:textColor="#FFFFFF"
         android:textSize="18sp"
-        android:textStyle="bold"
+        android:textStyle="normal"
         app:layout_constraintStart_toStartOf="@+id/imageView2"
         app:layout_constraintTop_toBottomOf="@+id/txtAccept" />
 

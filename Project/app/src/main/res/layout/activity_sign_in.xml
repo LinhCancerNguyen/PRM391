@@ -9,7 +9,7 @@
 
     <TextView
         android:id="@+id/txtSignInSignUp"
-        android:layout_width="380dp"
+        android:layout_width="360dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:text="@string/txtSignInSignIn"
@@ -26,6 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:text="@string/txtSignInSmall"
+        android:textColor="#80000000"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/txtSignInSignUp"
         app:layout_constraintTop_toBottomOf="@+id/txtSignInSignUp" />
@@ -47,6 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:text="@string/txtEmailSignIn"
+        android:textColor="#80000000"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/txtSignInSmall"
         app:layout_constraintTop_toBottomOf="@+id/txtSignInSmall" />
@@ -57,6 +59,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:text="@string/txtPassSignIn"
+        android:textColor="#80000000"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/edEmailSignIn"
         app:layout_constraintTop_toBottomOf="@+id/edEmailSignIn" />
@@ -64,22 +67,24 @@
     <EditText
         android:id="@+id/edEmailSignIn"
         android:layout_width="360dp"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/custom_input"
         android:drawablePadding="12dp"
-        android:paddingStart="12dp"
-        android:paddingEnd="12dp"
         android:ems="10"
         android:hint="@string/edEmailSignIn"
         android:inputType="textEmailAddress"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:textColor="#000000"
+        android:textColorHint="#80000000"
         app:layout_constraintStart_toStartOf="@+id/txtEmailSignIn"
         app:layout_constraintTop_toBottomOf="@+id/txtEmailSignIn" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="360dp"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="@+id/txtPassSignIn"
         app:layout_constraintTop_toBottomOf="@+id/txtPassSignIn">
@@ -87,18 +92,20 @@
         <EditText
             android:id="@+id/edPassSignIn"
             android:layout_width="360dp"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:background="@drawable/custom_input"
             android:drawablePadding="12dp"
+            android:ems="10"
+            android:inputType="textPassword"
             android:paddingStart="12dp"
             android:paddingEnd="12dp"
-            android:ems="10"
-            android:inputType="textPassword" />
+            android:textColor="#000000"
+            android:textColorHint="#800C0C0C" />
 
         <Button
             android:id="@+id/btnShowHideSignIn"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:layout_alignParentRight="true"
             android:alpha="1"
             android:background="@drawable/custom_button_2"
@@ -113,20 +120,22 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:text="@string/txtRemember"
+        android:textColor="#80000000"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
         app:layout_constraintStart_toEndOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
     <Button
         android:id="@+id/btnSignInSignIn"
-        android:layout_width="380dp"
-        android:layout_height="60dp"
+        android:layout_width="360dp"
+        android:layout_height="40dp"
         android:layout_marginTop="30dp"
+        android:background="@drawable/custom_button_1"
         android:text="@string/btnSignInSignIn"
         android:textAllCaps="false"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:background="@drawable/custom_button_1"
         android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtRemember" />
@@ -137,6 +146,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:text="@string/txtForgot"
+        android:textColor="#80000000"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@+id/btnSignInSignIn"
         app:layout_constraintStart_toStartOf="@+id/btnSignInSignIn"
@@ -149,5 +159,5 @@
         android:layout_marginTop="25dp"
         app:layout_constraintStart_toStartOf="@+id/relativeLayout"
         app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
-        app:srcCompat="@drawable/ic_baseline_check_box_24" />
+        app:srcCompat="@drawable/ic_checkbox" />
 </androidx.constraintlayout.widget.ConstraintLayout>

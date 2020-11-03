@@ -45,4 +45,5 @@
     <string name="txtSignInSignUp">Sign in!</string>
     <string name="txtSetting">Settings</string>
     <string name="btnEdit">Edit Profile</string>
+    <string name="txtSecurity">Security</string>
 </resources>

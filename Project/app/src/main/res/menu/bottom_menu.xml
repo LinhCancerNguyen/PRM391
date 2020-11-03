@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/firstFragment"
-        android:icon="@drawable/ic_baseline_home_24" />
+        android:id="@+id/mainFragment"
+        android:icon="@drawable/ic_home"
+        android:iconTint="#80000000" />
     <item
-        android:id="@+id/secondFragment"
-        android:icon="@drawable/ic_baseline_bookmark_border_24" />
+        android:id="@+id/orderFragment"
+        android:icon="@drawable/ic_order"
+        android:iconTint="#000000" />
     <item
-        android:id="@+id/thirdFragment"
-        android:icon="@drawable/ic_baseline_notifications_24" />
+        android:id="@+id/notificationFragment"
+        android:icon="@drawable/ic_notifications" />
     <item
         android:id="@+id/settingFragment"
-        android:icon="@drawable/ic_baseline_settings_24" />
+        android:icon="@drawable/ic_setting" />
 </menu>

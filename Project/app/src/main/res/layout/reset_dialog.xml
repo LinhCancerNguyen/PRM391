@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@drawable/custom_dialog">
 
     <TextView
         android:id="@+id/txtReset"
@@ -22,18 +23,19 @@
         android:id="@+id/imgIcon"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="@+id/txtReset"
         app:layout_constraintStart_toStartOf="@+id/txtReset"
         app:layout_constraintTop_toBottomOf="@+id/txtReset"
-        app:srcCompat="@drawable/ic_baseline_check_circle_outline_24" />
+        app:srcCompat="@drawable/ic_check_circle" />
 
     <TextView
         android:id="@+id/txtResetMgs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="20dp"
         android:gravity="center"
+        android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@+id/imgIcon"
         app:layout_constraintStart_toStartOf="@+id/imgIcon"
@@ -41,15 +43,16 @@
 
     <Button
         android:id="@+id/btnReturnSignIn"
-        android:layout_width="360dp"
-        android:layout_height="60dp"
+        android:layout_width="340dp"
+        android:layout_height="40dp"
         android:layout_marginTop="25dp"
         android:layout_marginBottom="25dp"
-        android:background="#5049C0"
+        android:background="@drawable/custom_button_1"
         android:text="@string/btnReturnSignIn"
         android:textAllCaps="false"
+        android:textColor="#FFFFFF"
         android:textSize="18sp"
-        android:textStyle="bold"
+        android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.49"

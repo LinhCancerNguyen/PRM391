@@ -3,12 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="16dp">
+    android:padding="8dp">
 
     <ImageView
         android:id="@+id/imgMenu"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:src="@mipmap/ic_launcher" />
 
     <TextView
@@ -18,5 +18,5 @@
         android:paddingLeft="20dp"
         android:paddingTop="7dp"
         android:textColor="#5049C0"
-        android:textSize="18sp" />
+        android:textSize="14sp" />
 </LinearLayout>
