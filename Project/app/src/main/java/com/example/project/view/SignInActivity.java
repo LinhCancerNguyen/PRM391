@@ -11,6 +11,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.project.R;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 public class SignInActivity extends AppCompatActivity {
 
@@ -21,6 +25,7 @@ public class SignInActivity extends AppCompatActivity {
     private Button btnSignInSignIn;
     private TextView txtForgot;
     private boolean isChecked;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,8 +71,17 @@ public class SignInActivity extends AppCompatActivity {
         btnSignInSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SignInActivity.this, HomeActivity.class);
-                startActivity(intent);
+                db = FirebaseFirestore.getInstance();
+                Task<QuerySnapshot> task = db.collection("account").get();
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        edEmailSignIn.setText("ID = " + document.getId() +"\nData = " + document.getData());
+                    }
+                } else {
+                    edEmailSignIn.setText("nnn");
+                }
+//                Intent intent = new Intent(SignInActivity.this, HomeActivity.class);
+//                startActivity(intent);
             }
         });
 
