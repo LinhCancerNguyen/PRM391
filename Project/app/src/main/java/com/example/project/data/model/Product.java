@@ -1,23 +1,36 @@
-package com.example.project.data;
+package com.example.project.data.model;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+import java.util.Map;
+
+@Entity
 public class Product {
+    @PrimaryKey
     private String id;
+    @ColumnInfo
     private String name;
+    @ColumnInfo
     private String description;
+    @ColumnInfo
     private String classify;
+    @ColumnInfo
     private double price;
+    @ColumnInfo
     private String imgLink;
 
     public Product() {
     }
 
-    public Product(String id, String name, String description, String classify, double price, String imgLink) {
+    public Product(String id, Map<String, Object> data) {
         this.id = id;
-        this.name = name;
-        this.description = description;
-        this.classify = classify;
-        this.price = price;
-        this.imgLink = imgLink;
+        this.name = data.getOrDefault("name", "None").toString();
+        this.description = data.getOrDefault("description", "None").toString();
+        this.classify = data.getOrDefault("classify", "None").toString();
+        this.price = (double) data.getOrDefault("price", "0");
+        this.imgLink = data.getOrDefault("imgLink", "None").toString();
     }
 
     public String getId() {

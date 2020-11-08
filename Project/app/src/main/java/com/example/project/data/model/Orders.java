@@ -1,25 +1,36 @@
-package com.example.project.data;
+package com.example.project.data.model;
+
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 import java.sql.Date;
+import java.util.Map;
 
 enum OrderStatus{NOT_PAID, PROCESSING, ACCEPTED, DELIVER, RECEIVED, SUCCESS, CANCEL, EXPIRED, ROLL_BACK}
 
-public class Order {
+@Entity
+public class Orders {
+    @PrimaryKey
     private String id;
+    @ColumnInfo
     private String accountID;
+    @ColumnInfo
     private String productID;
+    @ColumnInfo
     private Date dateOrder;
+    @ColumnInfo
     private OrderStatus status;
 
-    public Order() {
+    public Orders() {
     }
 
-    public Order(String id, String accountID, String productID, Date dateOrder, OrderStatus status) {
+    public Orders(String id, Map<String, Object> data) {
         this.id = id;
-        this.accountID = accountID;
-        this.productID = productID;
-        this.dateOrder = dateOrder;
-        this.status = status;
+        this.accountID = data.getOrDefault("accountID", "None").toString();
+        this.productID = data.getOrDefault("productID", "None").toString();
+        this.dateOrder = (Date) data.getOrDefault("dateOrder", "None");
+        this.status = (OrderStatus) data.getOrDefault("status", "None");
     }
 
     public String getId() {

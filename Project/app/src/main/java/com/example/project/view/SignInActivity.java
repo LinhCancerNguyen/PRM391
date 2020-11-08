@@ -25,7 +25,7 @@ public class SignInActivity extends AppCompatActivity {
     private Button btnSignInSignIn;
     private TextView txtForgot;
     private boolean isChecked;
-    private FirebaseFirestore db;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,17 +71,8 @@ public class SignInActivity extends AppCompatActivity {
         btnSignInSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                db = FirebaseFirestore.getInstance();
-                Task<QuerySnapshot> task = db.collection("account").get();
-                if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        edEmailSignIn.setText("ID = " + document.getId() +"\nData = " + document.getData());
-                    }
-                } else {
-                    edEmailSignIn.setText("nnn");
-                }
-//                Intent intent = new Intent(SignInActivity.this, HomeActivity.class);
-//                startActivity(intent);
+                Intent intent = new Intent(SignInActivity.this, HomeActivity.class);
+                startActivity(intent);
             }
         });
 

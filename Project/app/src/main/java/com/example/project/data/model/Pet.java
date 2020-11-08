@@ -1,15 +1,24 @@
-package com.example.project.data;
+package com.example.project.data.model;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+import java.util.Map;
+
+@Entity
 public class Pet {
+    @PrimaryKey
     private String id;
+    @ColumnInfo
     private String name;
 
     public Pet() {
     }
 
-    public Pet(String id, String name) {
+    public Pet(String id, Map<String, Object> data) {
         this.id = id;
-        this.name = name;
+        this.name = data.getOrDefault("name", "None").toString();
     }
 
     public String getId() {

@@ -1,21 +1,33 @@
-package com.example.project.data;
+package com.example.project.data.model;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+import java.util.Map;
+
+@Entity
 public class Account {
+    @PrimaryKey
     private String id;
+    @ColumnInfo
     private String name;
+    @ColumnInfo
     private String email;
+    @ColumnInfo
     private String password;
+    @ColumnInfo
     private String phone;
 
     public Account() {
     }
 
-    public Account(String id, String name, String email, String password, String phone) {
+    public Account(String id, Map<String, Object> data) {
         this.id = id;
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.phone = phone;
+        this.name = data.getOrDefault("name", "None").toString();
+        this.email = data.getOrDefault("email", "None").toString();
+        this.password = data.getOrDefault("password", "None").toString();
+        this.phone = data.getOrDefault("phone", "None").toString();
     }
 
     public String getId() {
