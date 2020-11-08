@@ -21,7 +21,7 @@ public class Product {
     @ColumnInfo
     private String classify;
     @ColumnInfo
-    private double price;
+    private long price;
     @ColumnInfo
     private String imgLink;
 
@@ -33,7 +33,7 @@ public class Product {
         this.name = data.getOrDefault("name", "None").toString();
         this.description = data.getOrDefault("description", "None").toString();
         this.classify = data.getOrDefault("classify", "None").toString();
-        this.price = (double) data.getOrDefault("price", "0");
+        this.price = (long) data.getOrDefault("price", "0");
         this.imgLink = data.getOrDefault("imgLink", "None").toString();
     }
 
@@ -69,11 +69,11 @@ public class Product {
         this.classify = classify;
     }
 
-    public double getPrice() {
+    public long getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(long price) {
         this.price = price;
     }
 

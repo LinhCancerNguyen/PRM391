@@ -7,6 +7,8 @@ import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
 
+import com.google.firebase.Timestamp;
+
 import java.util.Date;
 import java.util.Map;
 
@@ -25,7 +27,7 @@ public class Orders {
     @TypeConverters(DateConverter.class)
     private Date dateOrder;
     @ColumnInfo
-    private int status;
+    private long status;
 
     public Orders() {
     }
@@ -34,8 +36,8 @@ public class Orders {
         this.id = id;
         this.accountID = data.getOrDefault("accountID", "None").toString();
         this.productID = data.getOrDefault("productID", "None").toString();
-        this.dateOrder = (Date) data.getOrDefault("dateOrder", "None");
-        this.status = (int) data.getOrDefault("status", "-1");
+        this.dateOrder = ((Timestamp) data.getOrDefault("dateOrder", "0")).toDate();
+        this.status = (long) data.getOrDefault("status", "-1");
     }
 
     public String getId() {
@@ -71,14 +73,14 @@ public class Orders {
     }
 
     public OrderStatus getOrderStatus() {
-        return OrderStatus.values()[status];
+        return OrderStatus.values()[(int)status];
     }
 
-    public int getStatus() {
+    public long getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(long status) {
         this.status = status;
     }
 }

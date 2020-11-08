@@ -1,6 +1,7 @@
 package com.example.project.view;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,12 +12,18 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.project.R;
+import com.example.project.data.db.AccountDAO;
+import com.example.project.data.db.DBConnection;
+import com.example.project.data.db.PetDAO;
 import com.example.project.data.db.SyncData;
 import com.example.project.data.model.Account;
+import com.example.project.data.model.Pet;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.List;
 
 public class SignInActivity extends AppCompatActivity {
 
@@ -29,12 +36,21 @@ public class SignInActivity extends AppCompatActivity {
     private boolean isChecked;
     private SyncData syncData;
 
+    private DBConnection db;
+    private AccountDAO accountDAO;
+    private PetDAO petDAO;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
-        syncData = new SyncData(this);
+        //syncData = new SyncData(this);
+        //accountDAO = db.getAccountDAO();
+        db = Room.databaseBuilder(getApplicationContext(), DBConnection.class,"PetShop.db")
+                .allowMainThreadQueries()
+                .build();
+        petDAO = db.getPetDAO();
 
         txtSignUpSignIn = findViewById(R.id.txtSignUpSignIn);
         edEmailSignIn = findViewById(R.id.edEmailSignIn);
@@ -42,6 +58,8 @@ public class SignInActivity extends AppCompatActivity {
         btnShowHideSignIn = findViewById(R.id.btnShowHideSignIn);
         btnSignInSignIn = findViewById(R.id.btnSignInSignIn);
         txtForgot = findViewById(R.id.txtForgot);
+        List<Pet> list = petDAO.all();
+        edEmailSignIn.setText(list.get(0).getName());
 
         btnShowHideSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,9 +96,9 @@ public class SignInActivity extends AppCompatActivity {
                 String email = edEmailSignIn.getText().toString();
                 String pass = edPassSignIn.getText().toString();
                 Account a = new Account(email, pass);
-                Account acc = syncData.Authen(a);
-                edEmailSignIn.setText(acc.getName());
-                edPassSignIn.setText(acc.getEmail());
+                //Account acc = syncData.Login(a);
+                //edEmailSignIn.setText(acc.getName());
+                //edPassSignIn.setText(acc.getEmail());
 //                Intent intent = new Intent(SignInActivity.this, HomeActivity.class);
 //                startActivity(intent);
             }
