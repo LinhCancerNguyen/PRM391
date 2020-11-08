@@ -1,15 +1,19 @@
 package com.example.project.data.model;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.util.Map;
 
+import javax.annotation.Nonnull;
+
 @Entity
 public class Product {
     @PrimaryKey
-    private String id;
+    @NonNull
+    private String id = "0";
     @ColumnInfo
     private String name;
     @ColumnInfo

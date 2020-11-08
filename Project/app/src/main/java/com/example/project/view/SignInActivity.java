@@ -11,6 +11,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.project.R;
+import com.example.project.data.db.SyncData;
+import com.example.project.data.model.Account;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -25,12 +27,14 @@ public class SignInActivity extends AppCompatActivity {
     private Button btnSignInSignIn;
     private TextView txtForgot;
     private boolean isChecked;
-
+    private SyncData syncData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
+
+        syncData = new SyncData(this);
 
         txtSignUpSignIn = findViewById(R.id.txtSignUpSignIn);
         edEmailSignIn = findViewById(R.id.edEmailSignIn);
@@ -71,8 +75,14 @@ public class SignInActivity extends AppCompatActivity {
         btnSignInSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SignInActivity.this, HomeActivity.class);
-                startActivity(intent);
+                String email = edEmailSignIn.getText().toString();
+                String pass = edPassSignIn.getText().toString();
+                Account a = new Account(email, pass);
+                Account acc = syncData.Authen(a);
+                edEmailSignIn.setText(acc.getName());
+                edPassSignIn.setText(acc.getEmail());
+//                Intent intent = new Intent(SignInActivity.this, HomeActivity.class);
+//                startActivity(intent);
             }
         });
 

@@ -1,5 +1,6 @@
 package com.example.project.data.model;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -9,7 +10,8 @@ import java.util.Map;
 @Entity
 public class Pet {
     @PrimaryKey
-    private String id;
+    @NonNull
+    private String id = "0";
     @ColumnInfo
     private String name;
 

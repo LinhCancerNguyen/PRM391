@@ -1,6 +1,7 @@
 package com.example.project.data.db;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
 
 import androidx.room.FtsOptions;
 import androidx.room.Room;
@@ -20,18 +21,23 @@ public class SyncData {
     private DBConnection dbConnection;
     private FirebaseFirestore db;
     private Account account;
+    private boolean connected;
 
     public SyncData(Context context) {
         dbConnection = Room.databaseBuilder(context, DBConnection.class,"PetShop.db")
                 .allowMainThreadQueries() //should remove
                 .build();
         db = FirebaseFirestore.getInstance();
+        ConnectivityManager manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        connected = manager.getActiveNetworkInfo()!=null && manager.getActiveNetworkInfo().isConnected();
     }
 
-    public void Synchronize(){
-        new ProductSync().start();
-        new PetSync().start();
-        new OrderSync().start();
+    public void Synchronize() {
+        if (connected) {
+            new ProductSync().start();
+            new PetSync().start();
+            new OrderSync().start();
+        }
     }
 
     public Account Authen(Account acc){
@@ -52,7 +58,7 @@ public class SyncData {
             Account temp = accountDAO.get(account.getId());
             if (temp != null){
                 account = temp;
-            } else {
+            } else if (connected) {
                 Task<QuerySnapshot> task = db.collection("account")
                         .whereEqualTo("email", account.getEmail())
                         .whereEqualTo("password", account.getPassword())
