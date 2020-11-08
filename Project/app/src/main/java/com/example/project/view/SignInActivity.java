@@ -16,6 +16,7 @@ import com.example.project.R;
 import com.example.project.data.db.AccountDAO;
 import com.example.project.data.db.DBConnection;
 import com.example.project.data.db.PetDAO;
+import com.example.project.data.db.ProductDAO;
 import com.example.project.data.db.SyncData;
 import com.example.project.data.model.Account;
 import com.example.project.data.model.Pet;
@@ -35,7 +36,6 @@ public class SignInActivity extends AppCompatActivity {
     private Button btnSignInSignIn;
     private TextView txtForgot;
     private boolean isChecked;
-    private SyncData syncData;
     private Account acc;
 
     @Override
@@ -43,12 +43,19 @@ public class SignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
+        DBConnection db = Room.databaseBuilder(getApplicationContext(), DBConnection.class, "PetShop.db")
+                .allowMainThreadQueries()
+                .build();
+        ProductDAO productDAO = db.getProductDAO();
+
         txtSignUpSignIn = findViewById(R.id.txtSignUpSignIn);
         edEmailSignIn = findViewById(R.id.edEmailSignIn);
         edPassSignIn = findViewById(R.id.edPassSignIn);
         btnShowHideSignIn = findViewById(R.id.btnShowHideSignIn);
         btnSignInSignIn = findViewById(R.id.btnSignInSignIn);
         txtForgot = findViewById(R.id.txtForgot);
+
+        edEmailSignIn.setText(productDAO.all().get(0).getName());
 
         btnShowHideSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,15 +105,18 @@ public class SignInActivity extends AppCompatActivity {
         });
     }
 
-    private synchronized void setAcc(Account a){
-        acc = a;
-    }
-
     class LoginThread extends Thread {
         @Override
         public void run() {
             SyncData syncData = new SyncData(SignInActivity.this);
-            acc = syncData.Login(acc);
+            synchronized (acc){
+                acc = syncData.Login(acc);
+            }
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             if (acc.getId() != "0") {
                 Intent intent = new Intent(SignInActivity.this, HomeActivity.class);
                 startActivity(intent);

@@ -3,6 +3,7 @@ package com.example.project.data.db;
 import android.content.Context;
 import android.net.ConnectivityManager;
 
+import androidx.annotation.NonNull;
 import androidx.room.FtsOptions;
 import androidx.room.Room;
 
@@ -10,8 +11,10 @@ import com.example.project.data.model.Account;
 import com.example.project.data.model.Orders;
 import com.example.project.data.model.Pet;
 import com.example.project.data.model.Product;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -65,7 +68,11 @@ public class SyncData {
             if (task.isSuccessful()) {
                 for (QueryDocumentSnapshot document : task.getResult()) {
                     account = new Account(document.getId(), document.getData());
-                    accountDAO.insert(account);
+                    try {
+                        accountDAO.insert(account);
+                    } catch (Exception e){
+                        System.out.println("s");
+                    }
                 }
             }
         }
