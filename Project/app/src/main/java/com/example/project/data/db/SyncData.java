@@ -43,12 +43,18 @@ public class SyncData {
 
     public Account Login(Account acc) {
         account = acc;
+        AccountSync();
         return account;
     }
 
     private void AccountSync() {
         AccountDAO accountDAO = dbConnection.getAccountDAO();
-        Account temp = accountDAO.get(account.getId());
+        Account temp= null;
+        try {
+             temp = accountDAO.get(account.getId());
+        } catch ( Exception e){
+            System.out.println("sss");
+        }
         if (temp != null) {
             account = temp;
         } else if (connected) {
@@ -58,10 +64,8 @@ public class SyncData {
                     .get();
             if (task.isSuccessful()) {
                 for (QueryDocumentSnapshot document : task.getResult()) {
-                    Account a = new Account(document.getId(), document.getData());
-                    if (a != null) {
-                        accountDAO.update(a);
-                    }
+                    account = new Account(document.getId(), document.getData());
+                    accountDAO.insert(account);
                 }
             }
         }

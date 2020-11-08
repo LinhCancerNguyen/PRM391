@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.project.R;
 import com.example.project.data.db.AccountDAO;
@@ -35,22 +36,12 @@ public class SignInActivity extends AppCompatActivity {
     private TextView txtForgot;
     private boolean isChecked;
     private SyncData syncData;
-
-    private DBConnection db;
-    private AccountDAO accountDAO;
-    private PetDAO petDAO;
+    private Account acc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
-
-        //syncData = new SyncData(this);
-        //accountDAO = db.getAccountDAO();
-        db = Room.databaseBuilder(getApplicationContext(), DBConnection.class,"PetShop.db")
-                .allowMainThreadQueries()
-                .build();
-        petDAO = db.getPetDAO();
 
         txtSignUpSignIn = findViewById(R.id.txtSignUpSignIn);
         edEmailSignIn = findViewById(R.id.edEmailSignIn);
@@ -58,8 +49,6 @@ public class SignInActivity extends AppCompatActivity {
         btnShowHideSignIn = findViewById(R.id.btnShowHideSignIn);
         btnSignInSignIn = findViewById(R.id.btnSignInSignIn);
         txtForgot = findViewById(R.id.txtForgot);
-        List<Pet> list = petDAO.all();
-        edEmailSignIn.setText(list.get(0).getName());
 
         btnShowHideSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,12 +84,8 @@ public class SignInActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String email = edEmailSignIn.getText().toString();
                 String pass = edPassSignIn.getText().toString();
-                Account a = new Account(email, pass);
-                //Account acc = syncData.Login(a);
-                //edEmailSignIn.setText(acc.getName());
-                //edPassSignIn.setText(acc.getEmail());
-//                Intent intent = new Intent(SignInActivity.this, HomeActivity.class);
-//                startActivity(intent);
+                acc = new Account(email, pass);
+                (new LoginThread()).start();
             }
         });
 
@@ -111,5 +96,21 @@ public class SignInActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private synchronized void setAcc(Account a){
+        acc = a;
+    }
+
+    class LoginThread extends Thread {
+        @Override
+        public void run() {
+            SyncData syncData = new SyncData(SignInActivity.this);
+            acc = syncData.Login(acc);
+            if (acc.getId() != "0") {
+                Intent intent = new Intent(SignInActivity.this, HomeActivity.class);
+                startActivity(intent);
+            }
+        }
     }
 }
