@@ -43,7 +43,7 @@ public class SignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
-        DBConnection db = Room.databaseBuilder(getApplicationContext(), DBConnection.class, "PetShop.db")
+            DBConnection db = Room.databaseBuilder(getApplicationContext(), DBConnection.class, "PetShop.db")
                 .allowMainThreadQueries()
                 .build();
         ProductDAO productDAO = db.getProductDAO();
@@ -109,14 +109,7 @@ public class SignInActivity extends AppCompatActivity {
         @Override
         public void run() {
             SyncData syncData = new SyncData(SignInActivity.this);
-            synchronized (acc){
-                acc = syncData.Login(acc);
-            }
-            try {
-                Thread.sleep(5000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            acc = syncData.Login(acc);
             if (acc.getId() != "0") {
                 Intent intent = new Intent(SignInActivity.this, HomeActivity.class);
                 startActivity(intent);
