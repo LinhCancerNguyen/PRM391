@@ -16,9 +16,8 @@ enum OrderStatus{NOT_PAID, PROCESSING, ACCEPTED, DELIVER, RECEIVED, SUCCESS, CAN
 
 @Entity
 public class Orders {
-    @PrimaryKey
-    @NonNull
-    private String id = "0";
+    @PrimaryKey(autoGenerate = true)
+    private int id;
     @ColumnInfo
     private String accountID;
     @ColumnInfo
@@ -32,7 +31,15 @@ public class Orders {
     public Orders() {
     }
 
-    public Orders(String id, Map<String, Object> data) {
+    public Orders(int id, String accountID, String productID, Date dateOrder, long status) {
+        this.id = id;
+        this.accountID = accountID;
+        this.productID = productID;
+        this.dateOrder = dateOrder;
+        this.status = status;
+    }
+
+    public Orders(int id, Map<String, Object> data) {
         this.id = id;
         this.accountID = data.getOrDefault("accountID", "None").toString();
         this.productID = data.getOrDefault("productID", "None").toString();
@@ -40,11 +47,11 @@ public class Orders {
         this.status = (long) data.getOrDefault("status", "-1");
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

@@ -17,7 +17,6 @@ import com.example.project.data.db.AccountDAO;
 import com.example.project.data.db.DBConnection;
 import com.example.project.data.db.PetDAO;
 import com.example.project.data.db.ProductDAO;
-import com.example.project.data.db.SyncData;
 import com.example.project.data.model.Account;
 import com.example.project.data.model.Pet;
 import com.google.android.gms.tasks.Task;
@@ -36,17 +35,16 @@ public class SignInActivity extends AppCompatActivity {
     private Button btnSignInSignIn;
     private TextView txtForgot;
     private boolean isChecked;
-    private Account acc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
-            DBConnection db = Room.databaseBuilder(getApplicationContext(), DBConnection.class, "PetShop.db")
+        DBConnection db = Room.databaseBuilder(getApplicationContext(), DBConnection.class, "PetShop.db")
                 .allowMainThreadQueries()
                 .build();
-        ProductDAO productDAO = db.getProductDAO();
+        AccountDAO accountDAO = db.getAccountDAO();
 
         txtSignUpSignIn = findViewById(R.id.txtSignUpSignIn);
         edEmailSignIn = findViewById(R.id.edEmailSignIn);
@@ -54,8 +52,6 @@ public class SignInActivity extends AppCompatActivity {
         btnShowHideSignIn = findViewById(R.id.btnShowHideSignIn);
         btnSignInSignIn = findViewById(R.id.btnSignInSignIn);
         txtForgot = findViewById(R.id.txtForgot);
-
-        edEmailSignIn.setText(productDAO.all().get(0).getName());
 
         btnShowHideSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,8 +87,11 @@ public class SignInActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String email = edEmailSignIn.getText().toString();
                 String pass = edPassSignIn.getText().toString();
-                acc = new Account(email, pass);
-                (new LoginThread()).start();
+                Account a = accountDAO.get(email, pass);
+                if (a != null) {
+                    Intent intent = new Intent(SignInActivity.this, HomeActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 
@@ -103,17 +102,5 @@ public class SignInActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-    }
-
-    class LoginThread extends Thread {
-        @Override
-        public void run() {
-            SyncData syncData = new SyncData(SignInActivity.this);
-            acc = syncData.Login(acc);
-            if (acc.getId() != "0") {
-                Intent intent = new Intent(SignInActivity.this, HomeActivity.class);
-                startActivity(intent);
-            }
-        }
     }
 }

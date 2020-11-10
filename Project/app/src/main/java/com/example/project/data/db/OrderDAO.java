@@ -15,7 +15,7 @@ public interface OrderDAO {
     @Query("SELECT * FROM orders")
     List<Orders> all();
     @Query("SELECT * FROM orders WHERE id = :id")
-    Orders get(String id);
+    Orders get(int id);
     @Insert
     void insert(Orders... orders);
     @Update

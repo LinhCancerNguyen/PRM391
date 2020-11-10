@@ -9,25 +9,29 @@ import java.util.Map;
 
 @Entity
 public class Pet {
-    @PrimaryKey
-    @NonNull
-    private String id = "0";
+    @PrimaryKey(autoGenerate = true)
+    private int id;
     @ColumnInfo
     private String name;
 
     public Pet() {
     }
 
-    public Pet(String id, Map<String, Object> data) {
+    public Pet(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public Pet(int id, Map<String, Object> data) {
         this.id = id;
         this.name = data.getOrDefault("name", "None").toString();
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

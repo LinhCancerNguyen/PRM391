@@ -11,9 +11,8 @@ import javax.annotation.Nonnull;
 
 @Entity
 public class Product {
-    @PrimaryKey
-    @NonNull
-    private String id = "0";
+    @PrimaryKey(autoGenerate = true)
+    private int id;
     @ColumnInfo
     private String name;
     @ColumnInfo
@@ -28,7 +27,16 @@ public class Product {
     public Product() {
     }
 
-    public Product(String id, Map<String, Object> data) {
+    public Product(int id, String name, String description, String classify, long price, String imgLink) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.classify = classify;
+        this.price = price;
+        this.imgLink = imgLink;
+    }
+
+    public Product(int id, Map<String, Object> data) {
         this.id = id;
         this.name = data.getOrDefault("name", "None").toString();
         this.description = data.getOrDefault("description", "None").toString();
@@ -37,11 +45,11 @@ public class Product {
         this.imgLink = data.getOrDefault("imgLink", "None").toString();
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

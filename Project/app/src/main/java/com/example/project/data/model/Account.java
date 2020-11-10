@@ -9,9 +9,8 @@ import java.util.Map;
 
 @Entity
 public class Account {
-    @PrimaryKey
-    @NonNull
-    private String id = "0";
+    @PrimaryKey(autoGenerate = true)
+    private int id;
     @ColumnInfo
     private String name;
     @ColumnInfo
@@ -29,7 +28,15 @@ public class Account {
         this.password = password;
     }
 
-    public Account(String id, Map<String, Object> data) {
+    public Account(int id, String name, String email, String password, String phone) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.phone = phone;
+    }
+
+    public Account(int id, Map<String, Object> data) {
         this.id = id;
         this.name = data.getOrDefault("name", "None").toString();
         this.email = data.getOrDefault("email", "None").toString();
@@ -37,11 +44,11 @@ public class Account {
         this.phone = data.getOrDefault("phone", "None").toString();
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
