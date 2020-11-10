@@ -38,6 +38,7 @@ public class SyncData {
 
     public void Synchronize() {
         if (connected) {
+            AccountSync();
             ProductSync();
             PetSync();
             OrderSync();
@@ -46,33 +47,46 @@ public class SyncData {
 
     public Account Login(Account acc) {
         account = acc;
-        AccountSync();
+        AccountCheck();
         return account;
+    }
+
+    private void AccountCheck() {
+        AccountDAO accountDAO = dbConnection.getAccountDAO();
+        Account temp= null;
+        temp = accountDAO.get(account.getEmail(), account.getPassword());
+        if (temp != null) {
+            account = temp;
+        } else if (connected) {
+            db.collection("account")
+                    .whereEqualTo("email", account.getEmail())
+                    .whereEqualTo("password", account.getPassword())
+                    .get()
+            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            account = new Account(document.getId(), document.getData());
+                            accountDAO.insert(account);
+                        }
+                    }
+                }
+            });
+        }
     }
 
     private void AccountSync() {
         AccountDAO accountDAO = dbConnection.getAccountDAO();
-        Account temp= null;
-        try {
-             temp = accountDAO.get(account.getId());
-        } catch ( Exception e){
-            System.out.println("sss");
-        }
-        if (temp != null) {
-            account = temp;
-        } else if (connected) {
-            Task<QuerySnapshot> task = db.collection("account")
-                    .whereEqualTo("email", account.getEmail())
-                    .whereEqualTo("password", account.getPassword())
-                    .get();
-            if (task.isSuccessful()) {
-                for (QueryDocumentSnapshot document : task.getResult()) {
-                    account = new Account(document.getId(), document.getData());
-                    try {
-                        accountDAO.insert(account);
-                    } catch (Exception e){
-                        System.out.println("s");
-                    }
+        Task<QuerySnapshot> task = db.collection("account").get();
+        if (task.isSuccessful()) {
+            for (QueryDocumentSnapshot document : task.getResult()) {
+                Account a = new Account(document.getId(), document.getData());
+                Account temp = accountDAO.get(a.getId());
+                if (temp == null) {
+                    accountDAO.insert(a);
+                } else {
+                    accountDAO.update(a);
                 }
             }
         }

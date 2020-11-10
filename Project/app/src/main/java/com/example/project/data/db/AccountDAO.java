@@ -16,6 +16,8 @@ public interface AccountDAO {
     List<Account> all();
     @Query("SELECT * FROM account WHERE id = :id")
     Account get(String id);
+    @Query("SELECT * FROM account WHERE email = :email AND password = :pass ")
+    Account get(String email, String pass);
     @Insert
     void insert(Account... accounts);
     @Update
