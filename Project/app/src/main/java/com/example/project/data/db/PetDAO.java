@@ -15,7 +15,7 @@ public interface PetDAO {
     @Query("SELECT * FROM pet")
     List<Pet> all();
     @Query("SELECT * FROM pet WHERE id = :id")
-    Pet get(String id);
+    Pet get(int id);
     @Insert
     void insert(Pet... pets);
     @Update

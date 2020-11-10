@@ -10,22 +10,17 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.project.R;
-import com.example.project.data.db.SyncData;
 
 public class MainActivity extends AppCompatActivity {
 
     private Button btnSignUp;
     private Button btnSignIn;
-
+    private Thread thread;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        SyncThread syncThread = new SyncThread();
-        syncThread.start();
-
         btnSignIn = findViewById(R.id.btnSignIn);
         btnSignUp = findViewById(R.id.btnSignUp);
 
@@ -43,14 +38,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-    }
-
-    class SyncThread extends Thread {
-        @Override
-        public void run() {
-            SyncData syncData = new SyncData(MainActivity.this);
-            syncData.Synchronize();
-        }
     }
 }
 
