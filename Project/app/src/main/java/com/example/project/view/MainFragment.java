@@ -9,6 +9,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +20,16 @@ import android.widget.ImageView;
 import android.widget.ViewFlipper;
 
 import com.example.project.R;
+import com.example.project.data.db.AccountDAO;
+import com.example.project.data.db.DBConnection;
+import com.example.project.data.db.PetDAO;
+import com.example.project.data.db.ProductDAO;
+import com.example.project.data.model.Account;
+import com.example.project.data.model.Pet;
+import com.example.project.data.model.Product;
+import com.example.project.view.adapter.ProductRecyclerViewAdapter;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -37,6 +50,11 @@ public class MainFragment extends Fragment {
     private Toolbar toolbar;
     private ViewFlipper imgSlide;
     private Context mContext;
+
+    private RecyclerView recyclerViewProduct;
+    private ProductRecyclerViewAdapter productRecyclerViewAdapter;
+    private List<Product> products;
+    private DBConnection db;
 
     @Override
     public void onAttach(Context context) {
@@ -95,6 +113,14 @@ public class MainFragment extends Fragment {
 
         toolbar = getView().findViewById(R.id.toolBar);
         imgSlide = getView().findViewById(R.id.imgSlide);
+        recyclerViewProduct = getView().findViewById(R.id.recyclerViewProduct);
+
+        db = Room.databaseBuilder(mContext, DBConnection.class, "database.db")
+                .allowMainThreadQueries()
+                .build();
+        ProductDAO productDAO = db.getProductDAO();
+        products = productDAO.all();
+
 
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
 
@@ -102,6 +128,12 @@ public class MainFragment extends Fragment {
         for(int i: img) {
             slide(i);
         }
+
+        productRecyclerViewAdapter = new ProductRecyclerViewAdapter(mContext, products);
+        recyclerViewProduct.setHasFixedSize(true);
+        recyclerViewProduct.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
+        recyclerViewProduct.setAdapter(productRecyclerViewAdapter);
+        productRecyclerViewAdapter.notifyDataSetChanged();
     }
 
     public void slide(int img) {

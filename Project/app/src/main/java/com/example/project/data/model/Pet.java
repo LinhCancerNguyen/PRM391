@@ -22,6 +22,10 @@ public class Pet {
         this.name = name;
     }
 
+    public Pet(String name) {
+        this.name = name;
+    }
+
     public Pet(int id, Map<String, Object> data) {
         this.id = id;
         this.name = data.getOrDefault("name", "None").toString();

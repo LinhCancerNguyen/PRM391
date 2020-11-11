@@ -11,20 +11,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.project.R;
 import com.example.project.data.db.AccountDAO;
 import com.example.project.data.db.DBConnection;
-import com.example.project.data.db.PetDAO;
-import com.example.project.data.db.ProductDAO;
 import com.example.project.data.model.Account;
-import com.example.project.data.model.Pet;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-
-import java.util.List;
 
 public class SignInActivity extends AppCompatActivity {
 
@@ -35,16 +25,12 @@ public class SignInActivity extends AppCompatActivity {
     private Button btnSignInSignIn;
     private TextView txtForgot;
     private boolean isChecked;
+    private DBConnection db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
-
-        DBConnection db = Room.databaseBuilder(getApplicationContext(), DBConnection.class, "PetShop.db")
-                .allowMainThreadQueries()
-                .build();
-        AccountDAO accountDAO = db.getAccountDAO();
 
         txtSignUpSignIn = findViewById(R.id.txtSignUpSignIn);
         edEmailSignIn = findViewById(R.id.edEmailSignIn);
@@ -85,12 +71,23 @@ public class SignInActivity extends AppCompatActivity {
         btnSignInSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = edEmailSignIn.getText().toString();
-                String pass = edPassSignIn.getText().toString();
-                Account a = accountDAO.get(email, pass);
-                if (a != null) {
-                    Intent intent = new Intent(SignInActivity.this, HomeActivity.class);
-                    startActivity(intent);
+                String email = edEmailSignIn.getText().toString().trim();
+                String pass = edPassSignIn.getText().toString().trim();
+                if (!email.isEmpty() && !pass.isEmpty()) {
+                    db = Room.databaseBuilder(getApplicationContext(), DBConnection.class, "database.db")
+                            .allowMainThreadQueries()
+                            .build();
+                    AccountDAO accountDAO = db.getAccountDAO();
+                    Account account = accountDAO.get(email, pass);
+                    if(account != null) {
+                        Intent intent = new Intent(SignInActivity.this, HomeActivity.class);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Unregistered user, or incorrect", Toast.LENGTH_SHORT).show();
+                    }
+
+                } else {
+                    Toast.makeText(getApplicationContext(), "Unregistered user, or incorrect", Toast.LENGTH_SHORT).show();
                 }
             }
         });

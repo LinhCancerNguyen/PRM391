@@ -14,7 +14,7 @@
         android:layout_marginTop="50dp"
         android:text="@string/txtSignInSignIn"
         android:textColor="#000000"
-        android:textSize="36sp"
+        android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,7 +27,7 @@
         android:layout_marginTop="25dp"
         android:text="@string/txtSignInSmall"
         android:textColor="#80000000"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@+id/txtSignInSignUp"
         app:layout_constraintTop_toBottomOf="@+id/txtSignInSignUp" />
 
@@ -38,7 +38,7 @@
         android:layout_marginStart="5dp"
         android:text="@string/txtSignUpSignIn"
         android:textColor="#5049C0"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/txtSignInSmall"
         app:layout_constraintTop_toTopOf="@+id/txtSignInSmall" />
 
@@ -49,7 +49,7 @@
         android:layout_marginTop="25dp"
         android:text="@string/txtEmailSignIn"
         android:textColor="#80000000"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@+id/txtSignInSmall"
         app:layout_constraintTop_toBottomOf="@+id/txtSignInSmall" />
 
@@ -60,7 +60,7 @@
         android:layout_marginTop="25dp"
         android:text="@string/txtPassSignIn"
         android:textColor="#80000000"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@+id/edEmailSignIn"
         app:layout_constraintTop_toBottomOf="@+id/edEmailSignIn" />
 
@@ -78,6 +78,7 @@
         android:paddingEnd="12dp"
         android:textColor="#000000"
         android:textColorHint="#80000000"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@+id/txtEmailSignIn"
         app:layout_constraintTop_toBottomOf="@+id/txtEmailSignIn" />
 
@@ -105,13 +106,20 @@
         <Button
             android:id="@+id/btnShowHideSignIn"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_height="36dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginBottom="2dp"
             android:alpha="1"
             android:background="@drawable/custom_button_2"
             android:text="@string/btnShowHideSignIn"
             android:textAllCaps="false"
-            android:textColor="#FFFFFF" />
+            android:textColor="#FFFFFF"
+            android:textSize="12sp" />
     </RelativeLayout>
 
     <TextView
@@ -134,7 +142,7 @@
         android:text="@string/btnSignInSignIn"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -147,7 +155,7 @@
         android:layout_marginTop="25dp"
         android:text="@string/txtForgot"
         android:textColor="#80000000"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="@+id/btnSignInSignIn"
         app:layout_constraintStart_toStartOf="@+id/btnSignInSignIn"
         app:layout_constraintTop_toBottomOf="@+id/btnSignInSignIn" />

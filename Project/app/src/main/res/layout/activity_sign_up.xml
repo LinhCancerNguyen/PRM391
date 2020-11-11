@@ -14,7 +14,7 @@
         android:layout_marginTop="50dp"
         android:text="@string/txtSignUp"
         android:textColor="#000000"
-        android:textSize="36sp"
+        android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,7 +27,7 @@
         android:layout_marginTop="25dp"
         android:text="@string/txtSignUpQuestion"
         android:textColor="#80000000"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@+id/txtSignUp"
         app:layout_constraintTop_toBottomOf="@+id/txtSignUp" />
 
@@ -38,7 +38,7 @@
         android:layout_marginStart="5dp"
         android:text="@string/txtSignInSignUp"
         android:textColor="#5049C0"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/txtSignUpQuestion"
         app:layout_constraintTop_toTopOf="@+id/txtSignUpQuestion" />
 
@@ -86,6 +86,7 @@
         android:paddingEnd="12dp"
         android:textColor="#000000"
         android:textColorHint="#80000000"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@+id/txtName"
         app:layout_constraintTop_toBottomOf="@+id/txtName" />
 
@@ -103,6 +104,7 @@
         android:paddingEnd="12dp"
         android:textColor="#000000"
         android:textColorHint="#80000000"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@+id/txtEmail"
         app:layout_constraintTop_toBottomOf="@+id/txtEmail" />
 
@@ -130,13 +132,20 @@
         <Button
             android:id="@+id/btnShowHide"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_height="36dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginBottom="2dp"
             android:alpha="1"
             android:background="@drawable/custom_button_2"
             android:text="@string/btnShowHide"
             android:textAllCaps="false"
-            android:textColor="#FFFFFF" />
+            android:textColor="#FFFFFF"
+            android:textSize="12sp" />
     </RelativeLayout>
 
     <TextView
@@ -146,6 +155,7 @@
         android:layout_marginTop="5dp"
         android:text="@string/txtSth"
         android:textColor="#5049C0"
+        android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/relativeLayout"
         app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
@@ -174,6 +184,7 @@
         android:paddingEnd="12dp"
         android:textColor="#000000"
         android:textColorHint="#80000000"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@+id/txtPhone"
         app:layout_constraintTop_toBottomOf="@+id/txtPhone" />
 
@@ -184,6 +195,7 @@
         android:layout_marginTop="5dp"
         android:text="@string/txtSthPhone"
         android:textColor="#5049C0"
+        android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/edPhone"
         app:layout_constraintTop_toBottomOf="@+id/edPhone" />
@@ -216,7 +228,7 @@
         android:text="@string/btnNext"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:textStyle="normal"
         app:layout_constraintStart_toStartOf="@+id/imageView2"
         app:layout_constraintTop_toBottomOf="@+id/txtAccept" />

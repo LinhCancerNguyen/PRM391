@@ -4,7 +4,6 @@
     android:id="@+id/toolBar"
     android:layout_width="match_parent"
     android:layout_height="60dp"
-    android:background="#1A000000"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <RelativeLayout
@@ -21,8 +20,8 @@
             android:background="@drawable/custom_search" />
 
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="28dp"
+            android:layout_width="45dp"
+            android:layout_height="25dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"

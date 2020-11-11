@@ -36,6 +36,13 @@ public class Account {
         this.phone = phone;
     }
 
+    public Account(String name, String email, String password, String phone) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.phone = phone;
+    }
+
     public Account(int id, Map<String, Object> data) {
         this.id = id;
         this.name = data.getOrDefault("name", "None").toString();

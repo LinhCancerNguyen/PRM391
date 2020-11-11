@@ -1,14 +1,9 @@
 package com.example.project.data.model;
 
-import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
-
-
-import com.google.firebase.Timestamp;
-
 import java.util.Date;
 import java.util.Map;
 
@@ -43,7 +38,7 @@ public class Orders {
         this.id = id;
         this.accountID = data.getOrDefault("accountID", "None").toString();
         this.productID = data.getOrDefault("productID", "None").toString();
-        this.dateOrder = ((Timestamp) data.getOrDefault("dateOrder", "0")).toDate();
+        this.dateOrder = (Date) data.getOrDefault("dateOrder", "0");
         this.status = (long) data.getOrDefault("status", "-1");
     }
 

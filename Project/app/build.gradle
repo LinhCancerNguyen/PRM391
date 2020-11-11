@@ -1,7 +1,6 @@
 plugins {
     id 'com.android.application'
 }
-apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 30
@@ -30,6 +29,7 @@ android {
 }
 
 dependencies {
+    implementation 'androidx.recyclerview:recyclerview:1.2.0-alpha06'
     def room_version = "2.2.5"
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
@@ -37,14 +37,9 @@ dependencies {
     implementation "androidx.room:room-guava:$room_version"
     testImplementation "androidx.room:room-testing:$room_version"
 
-    implementation platform('com.google.firebase:firebase-bom:26.0.0')
-    implementation 'com.google.firebase:firebase-analytics'
-    implementation 'com.google.firebase:firebase-auth'
-    implementation 'com.google.firebase:firebase-firestore'
-
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.2'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.navigation:navigation-fragment:2.3.1'
     implementation 'androidx.navigation:navigation-ui:2.3.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
